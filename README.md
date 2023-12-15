@@ -1,4 +1,27 @@
-# CosmWasm Starter Pack
+# CosmWasm from zero to hero
+
+## On Chain Polls
+
+As our first project, we're going to build and store polls on the chain. Its functionality is as follows:
+
+-   Any user can create a poll.
+-   Any user can vote on a poll.
+-   Polls can have different options.
+
+For a textual example I will talk through a scenario with some users:
+
+1. User A can create a poll for example:
+    - What Cosmos coin is your favorite?
+        1. Juno
+        1. Osmosis
+        1. Cosmos Hub
+2. User A decides to vote on their own poll, they vote for `Juno`
+3. User B can also vote on the poll, they vote for `Cosmos Hub`
+4. After a certain amount of time User A (as the owner of the poll) can close the poll. User A closes the poll
+5. User C attempts to vote on a closed poll. They cannot
+6. The poll results are now visible for everyone to see on the chain
+
+## CosmWasm Starter Pack
 
 This is a template to build smart contracts in Rust to run inside a
 [Cosmos SDK](https://github.com/cosmos/cosmos-sdk) module on all chains that enable it.
@@ -47,60 +70,3 @@ cargo generate --git https://github.com/CosmWasm/cw-template.git --branch 0.16 -
 
 You will now have a new folder called `PROJECT_NAME` (I hope you changed that to something else)
 containing a simple working contract and build system that you can customize.
-
-## Create a Repo
-
-After generating, you have a initialized local git repo, but no commits, and no remote.
-Go to a server (eg. github) and create a new upstream repo (called `YOUR-GIT-URL` below).
-Then run the following:
-
-```sh
-# this is needed to create a valid Cargo.lock file (see below)
-cargo check
-git branch -M main
-git add .
-git commit -m 'Initial Commit'
-git remote add origin YOUR-GIT-URL
-git push -u origin main
-```
-
-## CI Support
-
-We have template configurations for both [GitHub Actions](.github/workflows/Basic.yml)
-and [Circle CI](.circleci/config.yml) in the generated project, so you can
-get up and running with CI right away.
-
-One note is that the CI runs all `cargo` commands
-with `--locked` to ensure it uses the exact same versions as you have locally. This also means
-you must have an up-to-date `Cargo.lock` file, which is not auto-generated.
-The first time you set up the project (or after adding any dep), you should ensure the
-`Cargo.lock` file is updated, so the CI will test properly. This can be done simply by
-running `cargo check` or `cargo unit-test`.
-
-## Using your project
-
-Once you have your custom repo, you should check out [Developing](./Developing.md) to explain
-more on how to run tests and develop code. Or go through the
-[online tutorial](https://docs.cosmwasm.com/) to get a better feel
-of how to develop.
-
-[Publishing](./Publishing.md) contains useful information on how to publish your contract
-to the world, once you are ready to deploy it on a running blockchain. And
-[Importing](./Importing.md) contains information about pulling in other contracts or crates
-that have been published.
-
-Please replace this README file with information about your specific project. You can keep
-the `Developing.md` and `Publishing.md` files as useful referenced, but please set some
-proper description in the README.
-
-## Gitpod integration
-
-[Gitpod](https://www.gitpod.io/) container-based development platform will be enabled on your project by default.
-
-Workspace contains:
- - **rust**: for builds
- - [wasmd](https://github.com/CosmWasm/wasmd): for local node setup and client
- - **jq**: shell JSON manipulation tool
-
-Follow [Gitpod Getting Started](https://www.gitpod.io/docs/getting-started) and launch your workspace.
-
